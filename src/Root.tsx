@@ -43,7 +43,7 @@ export const RemotionRoot: React.FC = () => {
       id="TitleCard"
       component={TitleCard}
       fps={60}
-      durationInFrames={100}
+      durationInFrames={600}
       schema={TitleCardSchema}
       width={1920}
       height={1080}
