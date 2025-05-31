@@ -6,6 +6,7 @@ import {
   captionedVideoSchema,
 } from "./compositions/CaptionedVideo";
 import { CTA, ctaCompositionDefaultProps, CTASchema } from "./compositions/layouts/CTA";
+import { TitleCard, titleCardCompositionDefaultProps, TitleCardSchema } from "./compositions/layouts/TitleCard";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -16,8 +17,8 @@ export const RemotionRoot: React.FC = () => {
       component={CaptionedVideo}
       calculateMetadata={calculateCaptionedVideoMetadata}
       schema={captionedVideoSchema}
-      height={1080}
       width={1920}
+      height={1080}
       defaultProps={{
         src: staticFile("sample-video.mp4"),
       }}
@@ -28,8 +29,8 @@ export const RemotionRoot: React.FC = () => {
       fps={60}
       durationInFrames={100}
       schema={CTASchema}
-      height={1080}
       width={1920}
+      height={1080}
       defaultProps={{
         title: ctaCompositionDefaultProps.title,
         start_frame: ctaCompositionDefaultProps.start_frame,
@@ -38,5 +39,18 @@ export const RemotionRoot: React.FC = () => {
         content: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       }}
     />
+    <Composition
+      id="TitleCard"
+      component={TitleCard}
+      fps={60}
+      durationInFrames={100}
+      schema={TitleCardSchema}
+      width={1920}
+      height={1080}
+      defaultProps={{
+        start_frame: titleCardCompositionDefaultProps.start_frame,
+        end_frame: titleCardCompositionDefaultProps.end_frame,
+      }}
+      />
   </>
 };
