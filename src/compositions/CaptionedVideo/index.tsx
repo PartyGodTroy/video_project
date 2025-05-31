@@ -14,7 +14,7 @@ import {
 import { z } from "zod";
 import SubtitlePage from "./SubtitlePage";
 import { getVideoMetadata } from "@remotion/media-utils";
-import { loadFont } from "../load-font";
+import { loadFont } from "../../load-font";
 import { NoCaptionFile } from "./NoCaptionFile";
 import { Caption, createTikTokStyleCaptions } from "@remotion/captions";
 
@@ -121,6 +121,7 @@ export const CaptionedVideo: React.FC<{
 
         return (
           <Sequence
+            name={`Subtitle ${index}`}
             key={index}
             from={subtitleStartFrame}
             durationInFrames={durationInFrames}

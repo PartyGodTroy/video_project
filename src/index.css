@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+
+ .grid-bg {
+         --grid-color: rgb(26, 16, 60);
+    --grid-size:100px;
+    background: #111;
+    background-image: linear-gradient(
+        var(--grid-color) 0.1em,
+        transparent 0.1em
+      ),
+    linear-gradient(90deg, var(--grid-color) 0.1em, transparent 0.1em)
+    
+    ;
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: center;
+  }
