@@ -5,12 +5,16 @@ import {
   staticFile,
   AbsoluteFill,
   Img,
+  spring,
+  random,
 } from "remotion";
 import {  z } from "zod";
 import ParallaxBG from "../../components/ParallaxBG";
 
 
 import {loadFont} from "@remotion/fonts"
+import { basicFadeIn } from "../../animations/Fades";
+import { SlideInFromBottom, SlideInFromTop } from "../../animations/Slides";
 
 
 const fontFamily = "Fighting";
@@ -33,13 +37,25 @@ export const Versus: React.FC<VersusCompositionProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const { width, height } = useVideoConfig();
+  const { width, height, fps } = useVideoConfig();
 
   const gridcols = height >= width ? 1 : 2;
   const gridrows = height >= width ? 2 : 1;
 
 
-  
+  const versusLogoOpacity = basicFadeIn(frame, start_frame + fps * 2, start_frame + fps * 2.3 )
+  const versusXShake = random(null) * 25 - 50
+  const versusYShake = random(null) * 25 - 50
+
+
+ const versusScale = spring({frame,fps,
+    config: {
+        stiffness: 100,
+    },
+    durationInFrames: 40,
+    delay: start_frame + fps * 2.3
+    });
+
 
   return (
     <Sequence
@@ -61,7 +77,9 @@ export const Versus: React.FC<VersusCompositionProps> = ({
                <ParallaxBG className="opacity-20" direction="l"  frame={frame} end_frame={end_frame} img_path={'noise/anisotropic_noise.png'} />
             </AbsoluteFill>
             <div className="relative z-40" style={{top:`${width *0.07}px`}}>
-              <VersusOpponent {...A} flip_img={true} width={width} flip_name={false} />
+                <SlideInFromTop start={start_frame + fps * 0.5} end={start_frame + fps} frame={frame} height={height}>
+                    <VersusOpponent {...A} flip_img={true} width={width} flip_name={false} />
+                </SlideInFromTop>
             </div>
         </div>
         <div className="bg-red-400 relative overflow-hidden">
@@ -69,7 +87,9 @@ export const Versus: React.FC<VersusCompositionProps> = ({
                <ParallaxBG className="opacity-20" direction="r" frame={frame} end_frame={end_frame} img_path={'noise/anisotropic_noise.png'} />
             </AbsoluteFill>
             <div className="relative h-full z-40">
-              <VersusOpponent {...B} flip_img={false} width={width} flip_name={true} />
+                <SlideInFromBottom start={start_frame + fps * 0.5} end={start_frame + fps} frame={frame} height={height}>
+                <VersusOpponent {...B} flip_img={false} width={width} flip_name={true} />
+                </SlideInFromBottom>
             </div>
         </div>
       </div>
@@ -89,7 +109,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
          <AbsoluteFill className="flex justify-center z-50">
           <Img
             className="relative"
-            style={{left: width / 2 - 317 / 2}}
+            style={{left: width / 2 - 317 / 2 + versusXShake, top:`${versusYShake}px`, opacity: versusLogoOpacity, scale: versusScale}}
             src={staticFile("versus/versus-logo.png")}
             width={317}
             height={height}
@@ -119,7 +139,7 @@ export const VersusSchema = z.object({
 
 export const versusCompositionDefaultProps: z.infer<typeof VersusSchema> = {
   start_frame: 0,
-  end_frame: 360,
+  end_frame: 600,
   title: "Versus",
   A: {
     name: "Ryu",

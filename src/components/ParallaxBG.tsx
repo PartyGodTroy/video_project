@@ -12,7 +12,7 @@ export interface ParallaxBGProps {
 
 const ParallaxBG: React.FC<ParallaxBGProps> = (props: ParallaxBGProps) => {
   const aSideFrames: number[] = [];
-  for (let abgFrames = 0; abgFrames < props.end_frame / 3; abgFrames++) {
+  for (let abgFrames = 0; abgFrames < props.end_frame / 4; abgFrames++) {
     aSideFrames.push(abgFrames);
   }
 
