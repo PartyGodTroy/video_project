@@ -48,6 +48,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
   const versusYShake = random(null) * 25 - 50
 
 
+
  const versusScale = spring({frame,fps,
     config: {
         stiffness: 100,
