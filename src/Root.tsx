@@ -5,8 +5,9 @@ import {
   calculateCaptionedVideoMetadata,
   captionedVideoSchema,
 } from "./compositions/CaptionedVideo";
-import { CTA, ctaCompositionDefaultProps, CTASchema } from "./compositions/layouts/CTA";
-import { TitleCard, titleCardCompositionDefaultProps, TitleCardSchema } from "./compositions/layouts/TitleCard";
+import { CTA, ctaCompositionDefaultProps, CTASchema } from "./compositions/scenes/CTA";
+import { TitleCard, titleCardCompositionDefaultProps, TitleCardSchema } from "./compositions/scenes/TitleCard";
+import { Versus, versusCompositionDefaultProps, VersusSchema } from "./compositions/scenes/Versus";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -27,7 +28,7 @@ export const RemotionRoot: React.FC = () => {
       id="CTA"
       component={CTA}
       fps={60}
-      durationInFrames={100}
+      durationInFrames={360}
       schema={CTASchema}
       width={1920}
       height={1080}
@@ -50,7 +51,25 @@ export const RemotionRoot: React.FC = () => {
       defaultProps={{
         start_frame: titleCardCompositionDefaultProps.start_frame,
         end_frame: titleCardCompositionDefaultProps.end_frame,
+      }}  
+      />
+     <Composition
+      id="Versus"
+      component={Versus}
+      fps={60}
+      durationInFrames={600}
+      schema={VersusSchema}
+      width={1920}
+      height={1080}
+      defaultProps={{
+        title: versusCompositionDefaultProps.title,
+        A: versusCompositionDefaultProps.A,
+        B: versusCompositionDefaultProps.B,
+        start_frame: versusCompositionDefaultProps.start_frame,
+        end_frame: versusCompositionDefaultProps.end_frame,
       }}
+    
+      
       />
   </>
 };

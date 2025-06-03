@@ -93,7 +93,7 @@ export const CTASchema = z.object({
 
 export const ctaCompositionDefaultProps: z.infer<typeof CTASchema> = {
   start_frame: 0,
-  end_frame: 60,
+  end_frame: 360,
   title: "Call to Action",
   img: undefined,
   content: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
