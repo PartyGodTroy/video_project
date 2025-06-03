@@ -8,8 +8,10 @@
   "dependencies": {
     "@remotion/animation-utils": "4.0.298",
     "@remotion/cli": "4.0.298",
+    "@remotion/fonts": "^4.0.312",
     "@remotion/layout-utils": "4.0.298",
     "@remotion/media-utils": "4.0.298",
+    "@remotion/noise": "^4.0.312",
     "@remotion/tailwind-v4": "4.0.298",
     "@remotion/zod-types": "4.0.298",
     "mermaid": "^11.6.0",
