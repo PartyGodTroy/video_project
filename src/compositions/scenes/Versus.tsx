@@ -7,9 +7,9 @@ import {
   Img,
   spring,
   random,
+  Video,
 } from "remotion";
 import {  z } from "zod";
-import ParallaxBG from "../../components/ParallaxBG";
 
 
 import {loadFont} from "@remotion/fonts"
@@ -37,7 +37,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const { width, height, fps } = useVideoConfig();
+  const { width, height, fps, } = useVideoConfig();
 
   const gridcols = height >= width ? 1 : 2;
   const gridrows = height >= width ? 2 : 1;
@@ -75,7 +75,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
       >
         <div className="bg-blue-400 relative z-20 overflow-hidden">
              <AbsoluteFill>
-               <ParallaxBG className="opacity-20" direction="l"  frame={frame} end_frame={end_frame} img_path={'noise/anisotropic_noise.png'} />
+                <Video loop={true}  style={{width:'100%',height:'100%', scale: 2}}  src={staticFile('bg/action_bg_blue.mp4')} />
             </AbsoluteFill>
             <div className="relative z-40" style={{top:`${width *0.07}px`}}>
                 <SlideInFromTop start={start_frame + fps * 0.5} end={start_frame + fps} frame={frame} height={height}>
@@ -85,7 +85,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
         </div>
         <div className="bg-red-400 relative overflow-hidden">
              <AbsoluteFill>
-               <ParallaxBG className="opacity-20" direction="r" frame={frame} end_frame={end_frame} img_path={'noise/anisotropic_noise.png'} />
+              <Video loop={true} style={{width:'100%',height:'100%', scale: 2}}  src={staticFile('bg/action_bg_red.mp4')} />
             </AbsoluteFill>
             <div className="relative h-full z-40">
                 <SlideInFromBottom start={start_frame + fps * 0.5} end={start_frame + fps} frame={frame} height={height}>
