@@ -1,4 +1,4 @@
-import {  Sequence, useCurrentFrame, useVideoConfig, spring, Img, staticFile, interpolate, AbsoluteFill } from "remotion";
+import {  Sequence, useCurrentFrame, useVideoConfig, spring, Img, staticFile, interpolate, AbsoluteFill, Video } from "remotion";
 import { z } from "zod";
 
 export const TitleCard: React.FC<TitleCardCompositionProps> = ({
@@ -39,10 +39,8 @@ export const TitleCard: React.FC<TitleCardCompositionProps> = ({
         durationInFrames={end_frame - start_frame}
       >
         <AbsoluteFill className="bg-black" style={{width, height}}>
-            <Img
-              src={staticFile("bg/background_1.png")}
-              className="absolute inset-0 object-cover"
-              style={{width, height}} />
+            <Video loop={true}  style={{width:'100%',height:'100%'}}  src={staticFile('bg/pixel_bg.mp4')} />
+          
         </AbsoluteFill>
         <div className="p-8 grid-bg h-full flex flex-col justify-center" style={{width}}>
             <div className="flex items-center justify-center">
@@ -51,11 +49,11 @@ export const TitleCard: React.FC<TitleCardCompositionProps> = ({
             <div className="flex flex-wrap items-center justify-center gap-8 mt-[100px]">
                 <div className="bg-white flex  items-center gap-1.5 p-10 rounded-4xl border-[10px] border-orange-400 text-[rgb(255,142,0)] text-4xl relative" style={{transform: `translateY(${socialSlideIn[0]}px)`}}>
                     <Img src={staticFile("icon/youtube.png")} width={40}  />
-                    <h2 className="font-bold" style={{fontSize: 30}}>@PartyGodTroy</h2>
+                    <h2 className="font-bold" style={{fontSize: 30}}>PartyLovesPolity</h2>
                 </div>
                 <div className="bg-white flex items-center gap-1.5 p-10 rounded-4xl border-[10px] border-orange-400 text-[rgb(255,142,0)] text-4xl relative" style={{transform: `translateY(${socialSlideIn[1]}px)`}}>
                     <Img src={staticFile("icon/tiktok.png")} width={40}  />
-                    <h2 className="font-bold" style={{fontSize: 30}}>@PartyGodTroy</h2>
+                    <h2 className="font-bold" style={{fontSize: 30}}>Zev.Love.V</h2>
                 </div>
                 <div className="bg-white flex items-center gap-1.5 p-10 rounded-4xl border-[10px] border-orange-400 text-[rgb(255,142,0)] text-4xl relative" style={{transform: `translateY(${socialSlideIn[2]}px)`}}>
                     <Img src={staticFile("icon/discord.png")} width={40}  />
@@ -63,7 +61,7 @@ export const TitleCard: React.FC<TitleCardCompositionProps> = ({
                 </div>
                   <div className="bg-white flex items-center gap-1.5 p-10 rounded-4xl border-[10px] border-orange-400 text-[rgb(255,142,0)] text-4xl relative" style={{transform: `translateY(${socialSlideIn[3]}px)`}}>
                     <Img src={staticFile("icon/bluesky.png")} width={40}  />
-                    <h2 className="font-bold" style={{fontSize: 30}}>@PartyGodTroy</h2>
+                    <h2 className="font-bold" style={{fontSize: 30}}>PartyLovesPolity</h2>
                 </div>
             </div>
         </div>

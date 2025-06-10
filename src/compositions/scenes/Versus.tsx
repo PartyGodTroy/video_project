@@ -179,10 +179,10 @@ const VersusOpponent = (props:VersusOpponent) =>{
           
             <div className="grid w-full h-full max-h-96 px-[140px]"  style={{gridTemplateRows}}>
                 <div className=" w-full h-full" style={{order:topBoxOrder}}>
-                   <Img src={props.img} className="w-full" style={{scale: `${props.flip_img ? -1 : 1} 1`}} />
+                   <Img src={props.img} className="w-full object-top object-cover rounded-full max-h-[600px]" style={{scale: `${props.flip_img ? -1 : 1} 1`}} />
                 </div>
                 <div className=" w-full h-full  flex justify-center items-center" style={{order:botBoxOrder}} id="a_name">
-                    <h2 className="font-bold font-serif" style={{fontSize:`${props.width * .05}px`, fontFamily:'Fighting'}}>
+                    <h2 className="font-bold font-serif text-white " style={{fontSize:`${props.width * .05}px`, fontFamily:'Fighting'}}>
                          {props.name}
                     </h2> 
                 </div>
