@@ -15,6 +15,7 @@ import {  z } from "zod";
 import {loadFont} from "@remotion/fonts"
 import { basicFadeIn } from "../../animations/Fades";
 import { SlideInFromBottom, SlideInFromTop } from "../../animations/Slides";
+import { CSSProperties } from "react";
 
 
 const fontFamily = "Fighting";
@@ -48,6 +49,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
   const versusYShake = random(null) * 25 - 50
 
 
+const is_mobile = width > height;
 
  const versusScale = spring({frame,fps,
     config: {
@@ -87,9 +89,14 @@ export const Versus: React.FC<VersusCompositionProps> = ({
              <AbsoluteFill>
               <Video loop={true} style={{width:'100%',height:'100%', scale: 2}}  src={staticFile('bg/action_bg_red.mp4')} />
             </AbsoluteFill>
-            <div className="relative h-full z-40">
+            <div className="relative h-full z-40" style={{top: is_mobile ? 100 : 0}}>
                 <SlideInFromBottom start={start_frame + fps * 0.5} end={start_frame + fps} frame={frame} height={height}>
-                <VersusOpponent {...B} flip_img={false} width={width} flip_name={true} />
+                    {is_mobile 
+                        ? <div className="relative">
+                          <VersusOpponent {...B} flip_img={false} width={width} flip_name={true} />
+                        </div>
+                        : <VersusOpponent {...B} flip_img={false} width={width} flip_name={true} />
+                    }
                 </SlideInFromBottom>
             </div>
         </div>
@@ -99,7 +106,7 @@ export const Versus: React.FC<VersusCompositionProps> = ({
       <AbsoluteFill className="flex justify-center z-50">
           <Img
             className="relative"
-            style={{left: width / 2 - 317 / 2}}
+            style={{left: width / 2 - 317 / 2, rotate: is_mobile ? '0deg' : '90deg'}}
             src={staticFile("versus/versus-divider.png")}
             width={317}
             height={height}
@@ -156,6 +163,7 @@ export type VersusCompositionProps = z.infer<typeof VersusSchema>;
 type VersusOpponent = typeof versusCompositionDefaultProps.A & {
     flip_name:boolean;
     width:number
+    style?: CSSProperties
 }
 
 const VersusOpponent = (props:VersusOpponent) =>{
@@ -175,11 +183,11 @@ const VersusOpponent = (props:VersusOpponent) =>{
 
 
     return (
-        <div className="flex h-full relative">
+        <div className="flex h-full relative justify-center" style={props.style}>
           
             <div className="grid w-full h-full max-h-96 px-[140px]"  style={{gridTemplateRows}}>
                 <div className=" w-full h-full" style={{order:topBoxOrder}}>
-                   <Img src={props.img} className="w-full object-top object-cover rounded-full max-h-[600px]" style={{scale: `${props.flip_img ? -1 : 1} 1`}} />
+                   <Img src={props.img} className="w-full object-top object-cover rounded-full max-w-[600px] max-h-[600px] aspect-square" style={{scale: `${props.flip_img ? -1 : 1} 1`}} />
                 </div>
                 <div className=" w-full h-full  flex justify-center items-center" style={{order:botBoxOrder}} id="a_name">
                     <h2 className="font-bold font-serif text-white " style={{fontSize:`${props.width * .05}px`, fontFamily:'Fighting'}}>

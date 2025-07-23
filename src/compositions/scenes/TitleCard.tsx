@@ -30,6 +30,15 @@ export const TitleCard: React.FC<TitleCardCompositionProps> = ({
 
     ]
 
+    const bg_rot = width > height
+      ? '0deg'
+      : '90deg'
+
+   const bg_scale = width > height
+      ? 1
+      : height / width
+
+
 
   return (
       <Sequence
@@ -39,7 +48,7 @@ export const TitleCard: React.FC<TitleCardCompositionProps> = ({
         durationInFrames={end_frame - start_frame}
       >
         <AbsoluteFill className="bg-black" style={{width, height}}>
-            <Video loop={true}  style={{width:'100%',height:'100%'}}  src={staticFile('bg/pixel_bg.mp4')} />
+            <Video loop={true}  style={{width:'100%',height:'100%', rotate: bg_rot, scale: bg_scale}}  src={staticFile('bg/pixel_bg.mp4')} />
           
         </AbsoluteFill>
         <div className="p-8 grid-bg h-full flex flex-col justify-center" style={{width}}>
